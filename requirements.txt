@@ -1,1 +1,63 @@
-streamlit
+altair==4.2.2
+asn1crypto @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/asn1crypto_1729057915386/work
+attrs==24.2.0
+blinker==1.9.0
+Brotli @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/brotli-split_1729038678152/work
+cachetools==5.5.0
+certifi @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/certifi_1729039663717/work/certifi
+cffi @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/cffi_1729038916690/work
+charset-normalizer @ file:///croot/charset-normalizer_1721748349566/work
+click @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/click_1729040674118/work
+colorama @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/colorama_1729036581634/work
+cryptography @ file:///C:/Users/dev-admin/buildout/croot/cryptography_1732914648225/work
+entrypoints==0.4
+filelock @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/filelock_1729048196920/work
+gitdb==4.0.11
+GitPython==3.1.43
+idna==3.10
+Jinja2==3.1.4
+jsonschema==4.23.0
+jsonschema-specifications==2024.10.1
+markdown-it-py==3.0.0
+MarkupSafe==3.0.2
+mdurl==0.1.2
+narwhals==1.16.0
+numpy==2.2.0
+packaging @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/packaging_1729036358816/work
+pandas==2.2.3
+pillow==11.0.0
+platformdirs @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/platformdirs_1729038057530/work
+protobuf==5.29.1
+pyarrow==18.1.0
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pydeck==0.9.1
+Pygments==2.18.0
+PyJWT @ file:///C:/Users/dev-admin/buildout/perseverance-python-buildout/croot/pyjwt_1731704262368/work
+pyOpenSSL @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pyopenssl_1729041579245/work
+PySocks @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pysocks_1729039320841/work
+python-dateutil==2.9.0.post0
+python-decouple==3.8
+python-dotenv @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/python-dotenv_1729051615609/work
+pytz @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pytz_1729039375330/work
+referencing==0.35.1
+requests @ file:///C:/b/abs_c3508vg8ez/croot/requests_1731000584867/work
+rich==13.9.4
+rpds-py==0.22.3
+setuptools==75.1.0
+six==1.17.0
+smmap==5.0.1
+snowflake-connector-python @ file:///C:/Users/dev-admin/buildout/perseverance-python-buildout/croot/snowflake-connector-python_1731747227469/work
+sortedcontainers @ file:///tmp/build/80754af9/sortedcontainers_1623949099177/work
+streamlit==1.40.2
+streamlit-aggrid==1.0.5
+tenacity==9.0.0
+toml==0.10.2
+tomlkit @ file:///C:/Users/dev-admin/buildout/perseverance-python-buildout/croot/tomlkit_1731700037073/work
+toolz==1.0.0
+tornado==6.4.2
+typing_extensions @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/typing_extensions_1729041782118/work
+tzdata==2024.2
+urllib3 @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/urllib3_1729040373311/work
+watchdog==6.0.0
+wheel==0.44.0
+win_inet_pton @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/win_inet_pton_1729038644686/work
