@@ -34,6 +34,23 @@ button[kind="header"] {
     display: none !important;
 }
 
+footer {
+    display: none !important;
+}
+
+/* Also ensure we catch all footer variations */
+[data-testid="stFooter"] {
+    display: none !important;
+}
+
+.streamlit-footer {
+    display: none !important;
+}
+
+.reportview-container .main footer {
+    display: none !important;
+}
+
 [data-testid="stVerticalBlock"] {
    padding: 0;
 }
