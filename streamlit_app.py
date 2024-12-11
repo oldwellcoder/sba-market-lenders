@@ -159,7 +159,7 @@ h4 {
    line-height: 135%;
    width: 100%;   /* Make the table take full width inside stApp */
    margin: 0 auto;
-   background: white;
+   background: #f8f1e3;
    border-radius: 8px;
    border-collapse: separate;
    border-spacing: 0;
