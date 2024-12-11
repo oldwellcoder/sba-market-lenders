@@ -61,6 +61,9 @@ footer {
 /* Set the full window background color */
 .stApp {
     background-color: #fcf7ed;
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
 }
 
 /* Create a centered container for content */
@@ -68,6 +71,19 @@ footer {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 120px;
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+}
+.main {
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+}
+
+/* Remove any default browser outlines */
+* {
+    outline: none !important;
 }
 
 h1 { 
