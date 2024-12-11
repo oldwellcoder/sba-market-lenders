@@ -4,7 +4,6 @@ import snowflake.connector
 from dotenv import load_dotenv
 import os
 from io import StringIO
-from itables.streamlit import interactive_table
 
 load_dotenv()
 
