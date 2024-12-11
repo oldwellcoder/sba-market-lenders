@@ -4,54 +4,27 @@ import snowflake.connector
 from dotenv import load_dotenv
 import os
 from io import StringIO
-from itables.streamlit import interactive_table
 
 load_dotenv()
 
-st.set_page_config(page_title="SBALend.ai", page_icon="📊", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="SBALend.ai", page_icon="📊", layout="wide")
 
 # Additional CSS
-#header {visibility: hidden;}
-#.streamlit-footer {display: none;}
 st.markdown("""
 <style>
             
+header {visibility: hidden;}
+.streamlit-footer {display: none;}
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&f[]=zodiak@700,400&display=swap');
-
-[data-testid="stHeader"] {
-    display: none !important;
-}
-
-.stDeployButton {
-    display: none !important;
-}
-
-section[data-testid="stSidebar"] {
-    display: none !important;
-}
-
-/* This hides the hamburger menu */
-button[kind="header"] {
-    display: none !important;
-}
 
 [data-testid="stVerticalBlock"] {
    padding: 0;
 }
-[data-testid="stHorizontalBlock"] {
-    flex-wrap: wrap !important;
-    gap: 1rem;
-}
-/* Set the full window background color */
-.stApp {
-    background-color: #fcf7ed;
-}
 
-/* Create a centered container for content */
-[data-testid="stAppViewContainer"] > div:first-child {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 120px;
+.stApp {
+   max-width: 1400px;
+   margin: 0 auto;
+   padding: 0 120px;
 }
 
 h1 { 
@@ -91,30 +64,27 @@ h4 {
 }
 
 .metric-container {
-   background: #d19039;
+   background: #f8f1e3;
    padding: 24px;
    border-radius: 8px;
-   flex: 1 1 200px !important;
-   min-width: 200px !important;
-   margin: 0 0 1rem 0 !important;
+   margin: 0 12px 24px 12px;
    height: 160px;
    display: flex;
    flex-direction: column;
 }
-            
 
 .metric-label {
    font-family: 'Satoshi', sans-serif !important;
    font-size: 14px !important;
    line-height: 20px !important;
-   color: white !important;
+   color: #302d27 !important;
 }
 
 .metric-value {
    font-family: 'Zodiak', serif !important;
    font-size: 40px !important;
    line-height: 54px !important;
-   color: white !important;
+   color: #25221c !important;
    flex-grow: 1;
    display: flex;
    align-items: center;
@@ -136,8 +106,8 @@ h4 {
 .dataframe th {
    padding: 24px;
    text-align: left;
-   background: #d19039;
-   color: white;
+   background: #f8f1e3;
+   color: #25221c;
 }
 
 .dataframe td {
@@ -147,21 +117,8 @@ h4 {
    word-wrap: break-word;
 }
 
-/* Style the download button */
-.stDownloadButton button {
-   background-color: #d19039 !important;
-   color: white !important;
-   border: none !important;
-   padding: 8px 16px !important;
-   border-radius: 4px !important;
-}
-
-.stDownloadButton button:hover {
-   background-color: #bf8333 !important;  /* Slightly darker on hover */
-}
-
 .pill {
-   display: block;
+   display: inline-block;
    padding: 4px 12px;
    border-radius: 16px;
    font-family: 'Satoshi', sans-serif;
@@ -170,7 +127,6 @@ h4 {
    font-weight: 500;
    text-align: center;
    min-width: 80px;
-   margin: 0 auto;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -181,17 +137,17 @@ def get_percentile_rating(val):
        return "N/A", "#f8f1e3"
    val = float(val)
    if val >= 90:
-       return "Very Low",  "#f6b762"
+       return "Very Low", "#f6b762"
    elif val >= 75:
        return "Low", "#f7c27f"
    elif val >= 60:
-       return "Below Average", "#f8cd9c" 
+       return "Below Average", "#f8cd9c"
    elif val >= 40:
        return "Average", "#f9d8b9"
    elif val >= 25:
-       return "Above Average",  "#fae3d6"
+       return "Above Average", "#fae3d6"
    elif val >= 10:
-       return "High",   "#fbeed3"
+       return "High", "#fbeed3"
    else:
        return "Very High", "#fcf7ed"
 
@@ -213,7 +169,7 @@ def fetch_data(_conn, query):
 
 conn = get_snowflake_connection()
 
-#st.header("SBA 7(a) Lender Analysis")
+st.header("SBA 7(a) Lender Analysis")
 
 size_options = {
    'Total': 'All Loan Sizes',
@@ -242,8 +198,6 @@ with col2:
        """
        industries = ['All Industries'] + fetch_data(conn, industry_query)['INDUSTRY'].tolist()
    industry = st.selectbox("Industry", options=industries, index=0)
-
-st.markdown("<div style='margin: 3rem 0'></div>", unsafe_allow_html=True)
 
 with st.spinner('Loading metrics...'):
    bans_query = f"""
@@ -294,8 +248,6 @@ with col4:
    </div>
    """, unsafe_allow_html=True)
 
-st.markdown("<div style='margin: 4rem 0'></div>", unsafe_allow_html=True)
-
 with st.spinner('Loading lenders...'):
    lenders_query = f"""
    SELECT 
@@ -325,14 +277,14 @@ column_headers = {
 lenders_data_formatted = lenders_data.copy()
 lenders_data_formatted['LOANS_APPROVED'] = lenders_data_formatted['LOANS_APPROVED'].apply(lambda x: f"{x:,}")
 lenders_data_formatted['LOANS_APPROVED_AMT'] = lenders_data_formatted['LOANS_APPROVED_AMT'].apply(lambda x: f"${x/1_000_000:,.1f}M")
-lenders_data_formatted['PCT_VARIABLE'] = lenders_data_formatted['PCT_VARIABLE'].apply(lambda x: f"{(1-x/100):.0%}" if pd.notnull(x) else "")
+lenders_data_formatted['PCT_VARIABLE'] = lenders_data_formatted['PCT_VARIABLE'].apply(lambda x: f"{(1-x/100):.0%}" if pd.notnull(x) else "N/A")
 
 # Restore pills for Average Pricing
 lenders_data_formatted['PRICING_PERCENTILE'] = lenders_data_formatted['PRICING_PERCENTILE'].apply(
-    lambda x: f'<div class="pill" style="background-color: {get_percentile_rating(x)[1]}; color: #25221c">{get_percentile_rating(x)[0]}</div>' if pd.notnull(x) else ""
+    lambda x: f'<div class="pill" style="background-color: {get_percentile_rating(x)[1]}; color: #25221c">{get_percentile_rating(x)[0]}</div>' if pd.notnull(x) else "N/A"
 )
 
-lenders_data_formatted['TYPICAL_PRICING'] = lenders_data_formatted['TYPICAL_PRICING'].fillna('')
+lenders_data_formatted['TYPICAL_PRICING'] = lenders_data_formatted['TYPICAL_PRICING'].fillna('N/A')
 
 df_renamed = lenders_data_formatted.rename(columns=column_headers)
 
@@ -349,8 +301,7 @@ st.download_button(
 )
 
 # Show only top 20 rows as an HTML table
-df_20 = df_renamed.head(25).sort_values('Average Pricing', ascending=True, key=lambda x: x.apply(lambda y: 'zzz' if y == '' else y))
-
+df_20 = df_renamed.head(20)
 
 st.write(df_20.to_html(
    escape=False,
@@ -358,4 +309,3 @@ st.write(df_20.to_html(
    classes=['dataframe'],
    justify='left'
 ), unsafe_allow_html=True)
-
