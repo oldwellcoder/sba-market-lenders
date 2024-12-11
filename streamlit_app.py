@@ -60,7 +60,7 @@ footer {
 }
 /* Set the full window background color */
 .stApp {
-    background-color: #fcf7ed;
+    background-color: #f8f1e3;
     box-shadow: none !important;
     outline: none !important;
     border: none !important;
